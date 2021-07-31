@@ -7,16 +7,16 @@ from dotenv import load_dotenv # importing 'load_dotenv()' to load our env varia
 import os # importing Python library for interfacing with OS
 load_dotenv()
 
-animals_app = Flask(__name__) # initializing our app obj
-animals_app.config["MONGO_URI"] = os.getenv("MONGO_URI") # configuring our DB location
-animals_db = PyMongo(animals_app) # instantiating our DB obj for use with our app
+pets_app = Flask(__name__) # initializing our app obj
+pets_app.config["MONGO_URI"] = os.getenv("MONGO_URI") # configuring our DB location
+animals_db = PyMongo(pets_app) # instantiating our DB obj for use with our app
 
-@animals_app.route('/')
-@animals_app.route('/index')
+@pets_app.route('/')
+@pets_app.route('/index')
 def index():
     return render_template('index.html')
 
 # 'create' part of 'CRUD'
-@animals_app.route('/create', methods=['POST', 'GET'])
+@pets_app.route('/create', methods=['POST', 'GET'])
 def create():
     pass
