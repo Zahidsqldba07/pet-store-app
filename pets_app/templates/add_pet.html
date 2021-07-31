@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block title %}<title>Add Pet</title>{% endblock %}
+
+{% block content %}
+    <form action="/add_pet" method="POST">
+        <!-- we'll be POSTing our 'add pet' form data to the 'add_pet' Flask route-->
+        <fieldset>
+            <legend><h5>Add Pet</h5></legend>
+            {{ add_pet_form.csrf_token }} <!-- CSRF token for security -->
+            {{ add_pet_form.name.label }} {{ add_pet_form.name }} <!-- pet's name -->
+            {{ add_pet_form.species.label }} {{ add_pet_form.species }} <!-- pet's species -->
+            {{ add_pet_form.age.label }} {{ add_pet_form.age }} <!-- pet's age -->
+            {{ add_pet_form.sex.label }} {{ add_pet_form.sex }} <!-- pet's sex/gender -->
+            {{ add_pet_form.description.label }} {{ add_pet_form.description }} <!-- pet's description -->
+            {{ add_pet_form.submit }} <!-- 'submit' button -->>
+        </fieldset>
+    </form>
+{% endblock %}
