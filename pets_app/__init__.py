@@ -14,6 +14,7 @@ load_dotenv()
 
 pets_app = Flask(__name__) # initializing our app obj
 pets_app.config["MONGO_URI"] = os.getenv("MONGO_URI") # configuring our DB location
+pets_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secret key to use web forms
 animals_db = PyMongo(pets_app) # instantiating our DB obj for use with our app
 
 from .forms import AddPet # importing our 'AddPet' form class
