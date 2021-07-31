@@ -15,8 +15,7 @@ load_dotenv()
 pets_app = Flask(__name__) # initializing our app obj
 pets_app.config["MONGO_URI"] = os.getenv("MONGO_URI") # configuring our DB location
 pets_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secret key to use web forms
-animals_db = PyMongo(pets_app) # instantiating our DB obj for use with our app
-animalsTable = animals_db.animals
+pets_db = PyMongo(pets_app) # instantiating our DB obj for use with our app
 
 from .forms import AddPet # importing our 'AddPet' form class
 
@@ -39,7 +38,7 @@ def add_pet():
             "sex": add_pet_form.sex.data,
             "description": add_pet_form.description.data
         }
-        animalsTable.insertOne(new_pet) # insert new record into 
+        pets_db.db.pets.insert(new_pet) # insert new record into DB
         flash('Pet added successfully!') # success feedback msg
         return redirect(url_for('index')) # redirect to home page
     return render_template('add_pet.html', add_pet_form=add_pet_form)
