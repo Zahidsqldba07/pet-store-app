@@ -14,5 +14,9 @@ animals_db = PyMongo(animals_app) # instantiating our DB obj for use with our ap
 @animals_app.route('/')
 @animals_app.route('/index')
 def index():
-    return "This is a homepage!"
+    return render_template('index.html')
 
+# 'create' part of 'CRUD'
+@animals_app.route('/create', methods=['POST', 'GET'])
+def create():
+    pass
