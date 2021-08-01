@@ -42,3 +42,8 @@ def add_pet():
         flash('Pet added successfully!') # success feedback msg
         return redirect(url_for('index')) # redirect to home page
     return render_template('add_pet.html', add_pet_form=add_pet_form)
+
+# 'read' part of 'CRUD'
+@pets_app.route('/read_pet/')
+def read_pet():
+    pass
