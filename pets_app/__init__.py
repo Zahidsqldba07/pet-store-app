@@ -34,6 +34,7 @@ def add_pet():
             # Python dictionary/JS object/MongoDB record, populated with form data
             "name": add_pet_form.name.data,
             "species": add_pet_form.species.data,
+            "owner": add_pet_form.owner.data,
             "age": add_pet_form.age.data,
             "sex": add_pet_form.sex.data,
             "description": add_pet_form.description.data
