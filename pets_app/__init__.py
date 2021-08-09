@@ -38,12 +38,15 @@ def add_pet():
             "sex": add_pet_form.sex.data,
             "description": add_pet_form.description.data
         }
+        new_pet_name = add_pet_form.name.data
         pets_db.db.pets.insert(new_pet) # insert new record into DB
         flash('Pet added successfully!') # success feedback msg
-        return redirect(url_for('index')) # redirect to home page
+        return redirect(url_for('read_pet', name=new_pet_name)) # redirect to pet's new 'read_pet' pg
     return render_template('add_pet.html', add_pet_form=add_pet_form)
 
 # 'read' part of 'CRUD'
-@pets_app.route('/read_pet/')
-def read_pet():
-    pass
+@pets_app.route('/read_pet/<name>')
+def read_pet(name):
+    # find pet based on given pet's name, print pet's info if there's a match
+    current_pet = pets_db.db.pets.find_one({"name": name}) # 'find_one()' should convert our PyMongo cursor obj of the record here to an iterable Python dictionary
+    return render_template('read_pet.html', current_pet=current_pet)
