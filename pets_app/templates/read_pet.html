@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+
+{% block title %}<title>Pets</title>{% endblock %}
+
+{% block content %}
+    <!-- printing values from our 'current_pet' MongoDB record as if it were a Python dictionary -->
+    <p>NAME: {{ current_pet['name'] }}</p>
+    <p>SPECIES: {{ current_pet['species'] }}</p>
+    <p>AGE: {{ current_pet['age'] }}</p>
+    <p>SEX/GENDER: {{ current_pet['sex'] }}</p>
+    <p>DESCRIPTION: {{ current_pet['description'] }}</p>
+{% endblock %}
