@@ -39,3 +39,10 @@ def read_pet(name):
     # find pet based on given pet's name, print pet's info if there's a match
     current_pet = pets_db.db.pets.find_one({"name": name}) # 'find_one()' should convert our PyMongo cursor obj of the record here to an iterable Python dictionary
     return render_template('read_pet.html', current_pet=current_pet) # passing our current Python dictionary/MongoDB record of the newly added pet to a template for rendering
+
+# 'update' part of 'CRUD'
+@crud_pets.route('/update_pet/<name>')
+def update_pet(name):
+    # find pet based on given pet's name, update any of the pet's info if there's a match
+    current_pet = pets_db.db.pets.find_one({"name": name}) # 'find_one()' should convert our PyMongo cursor obj of the record here to an iterable Python dictionary
+    return render_template('update_pet.html', current_pet=current_pet) # passing our current Python dictionary/MongoDB record of the current pet to a template for rendering
