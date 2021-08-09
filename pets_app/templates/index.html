@@ -4,5 +4,8 @@
 {% block title %}<title>Home Page</title>{% endblock %}
 
 {% block content %}
-    <h5>This is a homepage!</h5>
+    <h4>Pet Nursery</h4>
+    <button>
+        <a href="{{url_for('add_pet')}}">Add a New Pet to our Store!</a>
+    </button>
 {% endblock %}
