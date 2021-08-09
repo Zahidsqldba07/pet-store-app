@@ -1,5 +1,5 @@
 
-# this is basically where we configure/initialize our database, so I called it 'models.py' out of some kinda convention, maybe
+# this is basically where we configure/initialize our database
 
 from flask_pymongo import PyMongo # importing PyMongo() obj for interfacing with our MongoDB database
 
