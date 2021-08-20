@@ -10,5 +10,5 @@
     <p>AGE: {{ current_pet['age'] }}</p>
     <p>SEX/GENDER: {{ current_pet['sex'] }}</p>
     <p>DESCRIPTION: {{ current_pet['description'] }}</p>
-    <a href="{{url_for('update_pet', name=name)}}">Edit Pet Info</a>
+    <a href="{{url_for('crud_pets.update_pet', name=name)}}">Edit Pet Info</a>
 {% endblock %}

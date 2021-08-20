@@ -1,10 +1,10 @@
 
 {% extends 'base.html' %}
 
-{% block title %}<title>Update {{name}}'s Seecies</title>{% endblock %}
+{% block title %}<title>Update {{name}}'s Species</title>{% endblock %}
 
 {% block content %}
-    <form action="{{url_for('update_name', name=name)}}" method="POST">
+    <form action="{{url_for('crud_pets.update_species', name=name)}}" method="POST">
         <!-- we want to POST this data to '/update_species/{current_name}' URL -->
         <h4>Update {{name}}'s Species</h4>
         {{ species_form.new_species.label }} {{ species_form.new_species }} <!-- new species with 'current species' placeholder -->

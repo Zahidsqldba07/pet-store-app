@@ -39,7 +39,7 @@ def add_pet():
 def read_pet(name):
     # find pet based on given pet's name, print pet's info if there's a match
     current_pet = pets_db.db.pets.find_one({"name": name}) # 'find_one()' should convert our PyMongo cursor obj of the record here to an iterable Python dictionary
-    return render_template('read_pet.html', current_pet=current_pet) # passing our current Python dictionary/MongoDB record of the newly added pet to a template for rendering
+    return render_template('read_pet.html', current_pet=current_pet, name=name) # passing our current Python dictionary/MongoDB record of the newly added pet to a template for rendering, doing same with current pet's name
 
 ''' 'update' part of 'CRUD' '''
 
@@ -56,6 +56,8 @@ def update_name(name):
     if request.method == 'POST':
         # if we're POSTing valid data, let's update the current pet's name 
         current_pet['name'] = name_form.new_name.data
+        flash('Pet\'s name updated successfully!') # success feedback msg
+        return redirect(url_for('index')) # return to home page
     else:
         # if we're not POSTing anything, let's return the regular 'update_name' page
         return render_template('update_name.html', name=name, name_form=name_form) # our template with 'update name' form and 'name' variable for current name passed in
@@ -69,6 +71,8 @@ def update_species(name):
     if request.method == 'POST':
         # if we're POSTing valid data, let's update the current pet's species
         current_pet['species'] = species_form.new_species.data
+        flash('Pet\'s species updated successfully!') # success feedback msg
+        return redirect(url_for('index')) # return to home page
     else:
         # if we're not POSTing anything, let's return the regular 'update_species' page
         return render_template('update_species.html', name=name, current_species=current_species, species_form=species_form) # our template with 'update_species' form and 'current_species' variable passed in
