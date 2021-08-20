@@ -1,8 +1,13 @@
 
 {% extends 'base.html' %}
 
-{% block title %}<title>Update Pet's Name</title>{% endblock %}
+{% block title %}<title>Update {{name}}'s Name</title>{% endblock %}
 
 {% block content %}
-
+    <form action="{{url_for('update_name', name=name)}}" method="POST">
+        <!-- we want to POST this data to '/update_name/{current_name}' URL -->
+        <h4>Update {{name}}'s Name</h4>
+        {{ name_form.new_name.label }} {{ name_form.new_name }} <!-- new name with 'current name' placeholder -->
+        {{ name_form.submit }} <!-- 'submit' button -->
+    </form>
 {% endblock %}

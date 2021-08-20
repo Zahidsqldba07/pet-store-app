@@ -41,9 +41,34 @@ def read_pet(name):
     current_pet = pets_db.db.pets.find_one({"name": name}) # 'find_one()' should convert our PyMongo cursor obj of the record here to an iterable Python dictionary
     return render_template('read_pet.html', current_pet=current_pet) # passing our current Python dictionary/MongoDB record of the newly added pet to a template for rendering
 
-# 'update' part of 'CRUD'
+''' 'update' part of 'CRUD' '''
+
 @crud_pets.route('/update_pet/<name>')
 def update_pet(name):
-    # find pet based on given pet's name, update any of the pet's info if there's a match
+    # list of links to 'update pet info' forms for the given pet
+    return render_template('update_pet.html', name=name)
+
+@crud_pets.route('/update_name/<name>', methods=['POST', 'GET'])
+def update_name(name):
+    # find pet based on given pet's name, update pet's name if there's a match
     current_pet = pets_db.db.pets.find_one({"name": name}) # 'find_one()' should convert our PyMongo cursor obj of the record here to an iterable Python dictionary
-    return render_template('update_pet.html', current_pet=current_pet) # passing our current Python dictionary/MongoDB record of the current pet to a template for rendering
+    name_form = NewName(request.form) # get form data KV pairs, assign them to new NewName form object
+    if request.method == 'POST':
+        # if we're POSTing valid data, let's update the current pet's name 
+        current_pet['name'] = name_form.new_name.data
+    else:
+        # if we're not POSTing anything, let's return the regular 'update_name' page
+        return render_template('update_name.html', name=name, name_form=name_form) # our template with 'update name' form and 'name' variable for current name passed in
+
+@crud_pets.route('/update_species/<name>', methods=['POST', 'GET'])
+def update_species(name):
+    # find pet based on given pet's name, update pet's species if there's a match
+    current_pet = pets_db.db.pets.find_one({"name": name}) # 'find_one()' should convert our PyMongo cursor obj of the record here to an iterable Python dictionary
+    current_species = current_pet['species'] # using dictionary properties to get pet's current species
+    species_form = NewSpecies(request.form) # get form data KV pairs, assign them to new NewSpecies form object
+    if request.method == 'POST':
+        # if we're POSTing valid data, let's update the current pet's species
+        current_pet['species'] = species_form.new_species.data
+    else:
+        # if we're not POSTing anything, let's return the regular 'update_species' page
+        return render_template('update_species.html', name=name, current_species=current_species, species_form=species_form) # our template with 'update_species' form and 'current_species' variable passed in

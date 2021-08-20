@@ -1,8 +1,18 @@
 
 {% extends 'base.html' %}
 
-{% block title %}<title>Update Pet</title>{% endblock %}
+{% block title %}<title>Update Pet Info</title>{% endblock %}
 
 {% block content %}
-    <h4>Edit Pet</h4>
+    <h4>Edit Pet Info</h4>
+    <aside class="menu">
+        <!-- fancy list of 'update' buttons -->
+        <ul class="menu-list">
+            <li><a href="{{url_for('update_name', name=name)}}">Edit Pet's Name</a></li>
+            <li><a href="{{url_for('update_species', name=name)}}">Edit Pet's Species</a></li>
+            <li><a href="#">Edit Pet's Age</a></li>
+            <li><a href="#">Edit Pet's Sex/Gender</a></li>
+            <li><a href="#">Edit Pet's Description</a></li>
+        </ul>
+    </aside>
 {% endblock %}
