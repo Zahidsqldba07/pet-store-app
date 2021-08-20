@@ -56,6 +56,7 @@ def update_name(name):
     if request.method == 'POST':
         # if we're POSTing valid data, let's update the current pet's name 
         current_pet['name'] = name_form.new_name.data
+        pets_db.db.pets.save(current_pet) # save changed pet info to DB
         flash('Pet\'s name updated successfully!') # success feedback msg
         return redirect(url_for('index')) # return to home page
     else:
@@ -71,6 +72,7 @@ def update_species(name):
     if request.method == 'POST':
         # if we're POSTing valid data, let's update the current pet's species
         current_pet['species'] = species_form.new_species.data
+        pets_db.db.pets.save(current_pet) # save changed pet info to DB
         flash('Pet\'s species updated successfully!') # success feedback msg
         return redirect(url_for('index')) # return to home page
     else:
