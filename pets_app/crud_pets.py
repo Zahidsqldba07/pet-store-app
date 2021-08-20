@@ -11,7 +11,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash, Blu
 crud_pets = Blueprint('crud_pets', __name__) # our Blueprint for all pet-related CRUD routes
 
 from .database import pets_db # importing our initialized DB object
-from .forms import AddPet # importing our 'AddPet' form class
+from .forms import AddPet, NewAge, NewDescription, NewGender, NewSpecies, NewName # importing our 'AddPet' form class
+# and also our 'update' form classes
 
 # 'create' part of 'CRUD'
 @crud_pets.route('/add_pet', methods=['POST', 'GET'])
